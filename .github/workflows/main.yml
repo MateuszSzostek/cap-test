@@ -1,0 +1,46 @@
+name: Rebuild Page
+
+# Schedule a job
+on:
+  repository_dispatch:
+    types: [page.rebuild]
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: Run a one-line script
+        run: echo I am running now
+
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Create data and append
+        run: |
+          python do.py
+          pwd
+          cat timestamp.py
+      - name: Commit data files  
+        run: |
+          git config --local user.name  ${{ github.actor }}
+          git config --local user.email "szostekm230590@gmail.com"
+          git log --name-only
+          git add -A 
+          git commit -a -m "new data from scheduled job"
+          git log --name-only
+          git status
+          
+      - name: Push changes  #
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
