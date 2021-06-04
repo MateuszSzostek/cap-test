@@ -93,6 +93,7 @@ const IndexPage = props => {
     console.log(data)
   }
 
+  
   return (
     <Layout>
       <div style={{display: "flex", flexDirection: "column"}}>
