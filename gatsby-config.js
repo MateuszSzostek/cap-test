@@ -67,11 +67,11 @@ module.exports = {
     {
       resolve: `gatsby-source-airtable`,
       options: {
-        apiKey: `keybTuKyYnpTKfiIh`,
+        apiKey: `keyUoGyQzvvWbG6eX`,
         tables: [
           {
-            baseId: `appSeTII4K059Cmoz`,
-            tableName: `table`,
+            baseId: `app69WqLEJNisop4H`,
+            tableName: `kapsle`,
           },
         ],
       },
