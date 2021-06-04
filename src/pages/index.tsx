@@ -18,6 +18,7 @@ const IndexPage = props => {
   const [company, setCompany] = useState<string>("")
   const [countries, setCountries] = useState<ICountry[]>([{name:"Albania", selected: false}, {name:"Abchazja", selected: false}])
   const [results, setResults] = useState<any>();
+  const [rebuildInfo, seRebuildInfo] = useState<boolean>(false);
   const data = useStaticQuery(graphql`
     query HeaderQuery {
       allAirtable {
@@ -56,10 +57,17 @@ const IndexPage = props => {
 
     let countriesArray = [...albaniaArrayArray, ...abchazjaArray]
 
-    let companyArray = countriesArray.filter(c => (c.node.data.Firma && c.node.data.Firma.includes(company)))
-   
+    if(countriesArray.length === 0)
+    {
+      const companyArray = airTable.filter(c => (c.node.data.Firma && c.node.data.Firma.includes(company)))
+      setResults(companyArray);
+    }
+    else {
+      const companyArray = countriesArray.filter(c => (c.node.data.Firma && c.node.data.Firma.includes(company)))
+      setResults(companyArray);
+    }
+ 
    // let lastArray = [...new Set(resultArray)];
-    setResults(companyArray);
   }
 
 
@@ -107,6 +115,7 @@ const IndexPage = props => {
       <label htmlFor="Abchazja"> Abchazja</label><br></br>
     </div>
     <button style={{width: "200px"}} onClick = {() => submitHandler()}>Przebuduj Stronę</button>
+    <div>{rebuildInfo && "Strona zostanie przebudowana. Odśwież strone po kilku minutach aby sprawdzić czy zostały wprowadzone zmiany"}</div>
 
       </div>
       <div>
