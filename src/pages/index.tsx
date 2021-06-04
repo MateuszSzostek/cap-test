@@ -82,7 +82,7 @@ const IndexPage = props => {
     headers: {
       'Accept' : 'application/vnd.github.v3+json', 
       'User-Agent' : 'Contentful Webhook',
-      'Authorization' :'Bearer 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'
+      'Authorization' :'Bearer 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'
     },
     body: JSON.stringify({ event_type: 'page.rebuild' })
   }
@@ -93,7 +93,7 @@ const IndexPage = props => {
     console.log(data)
   }
 
-  
+
   return (
     <Layout>
       <div style={{display: "flex", flexDirection: "column"}}>
