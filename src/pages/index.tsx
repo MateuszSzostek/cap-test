@@ -18,7 +18,7 @@ const IndexPage = props => {
   const [company, setCompany] = useState<string>("")
   const [countries, setCountries] = useState<ICountry[]>([{name:"Albania", selected: false}, {name:"Abchazja", selected: false}])
   const [results, setResults] = useState<any>();
-  const [rebuildInfo, seRebuildInfo] = useState<boolean>(false);
+  const [rebuildInfo, setRebuildInfo] = useState<boolean>(false);
   const data = useStaticQuery(graphql`
     query HeaderQuery {
       allAirtable {
@@ -82,7 +82,7 @@ const IndexPage = props => {
     headers: {
       'Accept' : 'application/vnd.github.v3+json', 
       'User-Agent' : 'Contentful Webhook',
-      'Authorization' :'Bearer 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'
+      'Authorization' :'Bearer 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'
     },
     body: JSON.stringify({ event_type: 'page.rebuild' })
   }
@@ -91,6 +91,7 @@ const IndexPage = props => {
     const response = await fetch("https://api.github.com/repos/MateuszSzostek/cap-test/dispatches",requestOptions);
     const data = await response.json();
     console.log(data)
+    setRebuildInfo(true);
   }
 
 
