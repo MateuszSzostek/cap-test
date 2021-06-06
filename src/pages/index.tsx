@@ -78,14 +78,14 @@ const IndexPage = props => {
     filterTable ();
   }, [company, countries])
   
-  console.log(process.env.WEBHOOK)
+  console.log(process.env.CLOUDFLARE_WEBHOOK)
 
   const requestOptions = {
     method: 'POST',
     headers: {
       'Accept' : 'application/vnd.github.v3+json', 
       'User-Agent' : 'CapsleNew',
-      'Authorization' :process.env.WEBHOOK
+      'Authorization' :process.env.CLOUDFLARE_WEBHOOK
     },
     body: JSON.stringify({ event_type: 'page.rebuild' })
   }
