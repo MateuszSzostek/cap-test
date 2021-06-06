@@ -4,6 +4,7 @@ import { StaticImage, GatsbyImage } from "gatsby-plugin-image"
 import { useState, useEffect } from "react"
 import axios from "axios"
 
+
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
@@ -77,12 +78,14 @@ const IndexPage = props => {
     filterTable ();
   }, [company, countries])
   
+ // console.log(process.env.WEBHOOK)
+
   const requestOptions = {
     method: 'POST',
     headers: {
       'Accept' : 'application/vnd.github.v3+json', 
-      'User-Agent' : 'Contentful Webhook',
-      'Authorization' :'Bearer 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'
+      'User-Agent' : 'CapsleNew',
+      'Authorization' :process.env.WEBHOOK
     },
     body: JSON.stringify({ event_type: 'page.rebuild' })
   }
@@ -94,7 +97,7 @@ const IndexPage = props => {
     setRebuildInfo(true);
   }
 
-
+  //console.log(process.env.WEBHOOK)
   return (
     <Layout>
       <div style={{display: "flex", flexDirection: "column"}}>
