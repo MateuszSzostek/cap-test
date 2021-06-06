@@ -78,7 +78,7 @@ const IndexPage = props => {
     filterTable ();
   }, [company, countries])
   
- // console.log(process.env.WEBHOOK)
+  console.log(process.env.WEBHOOK)
 
   const requestOptions = {
     method: 'POST',
