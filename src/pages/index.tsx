@@ -100,6 +100,7 @@ const IndexPage = props => {
   //console.log(process.env.WEBHOOK)
   return (
     <Layout>
+      <p>{process.env.CLOUDFLARE_WEBHOOK}</p>
       <div style={{display: "flex", flexDirection: "column"}}>
         <div>
            <label htmlFor="name">Nazwa Firmy</label>
